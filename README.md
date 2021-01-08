@@ -23,11 +23,11 @@ Here are the topics and the messages they contain:
 
 ##### ISS:
 
-![](/home/joukowski/Documents/Fintech/NoSQL/satellite-tracking/imgs/iss-topic.jpeg)
+![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/iss-topic.jpeg)
 
 ##### NOAA-19:
 
-![](/home/joukowski/Documents/Fintech/NoSQL/satellite-tracking/imgs/noaa-topic.jpeg)
+![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/noaa-topic.jpeg)
 
 #### Consumer
 
@@ -39,7 +39,7 @@ The JavaScript code for the Leaflet map can be found inside the *static* folder,
 
 Here's a snapshot of the map:
 
-![](/home/joukowski/Documents/Fintech/NoSQL/satellite-tracking/imgs/map.jpeg)
+![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/map.jpeg)
 
 As it can be seen, there are three objects in the map:
 
@@ -54,7 +54,7 @@ To implement a notifications system, we created another consumer which reads the
 
 ##### NOTIFICATIONS:
 
-![](/home/joukowski/Documents/Fintech/NoSQL/satellite-tracking/imgs/notif-topic.jpeg)
+![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/notif-topic.jpeg)
 
 
 
