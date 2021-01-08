@@ -1,19 +1,6 @@
-##################################################################
-## PRODUCER: Gets raw data from API and publish it to a topic.  ##   
-##################################################################
-#                                                                #           
-#   - API: http://api.open-notify.org/iss-now.json               #   
-#                                                                #
-#   The API return the position of the ISS in a latitue/longitude# 
-#   accompained by a status of the request.                      #
-#                                                                #
-#                                                                #   
-##################################################################
-
 import json
 import time
 import requests
-# import keyboard
 from datetime import datetime
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
@@ -29,7 +16,8 @@ API_LIST = [
             LATITUDE_PARIS, LONGITUDE_PARIS), "name": "NOAA_19"}
 ]
 
-# function that makes a request to the API_URL and return the raw .json file.
+# get_raw_data returns the raw JSON data contained in the requests to the
+# provided urls.
 
 def get_raw_data(url):
     data = None
@@ -47,7 +35,7 @@ def get_raw_data(url):
         return data
 
 
-# function that instantiate the Kafka producer.
+# kafka_proucer instantiate a producer.
 
 def kafka_producer():
     try:
@@ -59,6 +47,8 @@ def kafka_producer():
     else:
         return producer
 
+# publish encodes the messages into bytes and publishes the messages to the
+# provided topic
 
 def publish(producer, topic, key, value):
     try:
@@ -74,13 +64,15 @@ def publish(producer, topic, key, value):
         print("KafkaError in Publishing the Message")
         print(str(ex))
 
+# GetPosition retrieves the position of the satellite from the message.
+
 def GetPosition(message):
     latitude = message['positions'][0]['satlatitude']
     longitude = message['positions'][0]['satlongitude']
     position = {"latitude": latitude, "longitude": longitude}
     return position
 
-# Continuous requests to the API
+
 if __name__ == "__main__":
     while True:
         for api in API_LIST:
