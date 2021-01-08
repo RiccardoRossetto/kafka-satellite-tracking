@@ -1,11 +1,11 @@
-from producer import API_LIST, LATITUDE_PARIS, LONGITUDE_PARIS
-from kafka import KafkaConsumer
-from producer import kafka_producer, publish
-from geopy.distance import distance
 import json
 import time
-from datetime import datetime
 import numpy as np
+from datetime import datetime
+from kafka import KafkaConsumer
+from geopy.distance import distance
+from producer import kafka_producer, publish
+from producer import API_LIST, LATITUDE_PARIS, LONGITUDE_PARIS
 
 
 def IsVisible(position):
@@ -21,7 +21,7 @@ def IsVisible(position):
 if __name__ == "__main__":
     while True:
         for api in API_LIST:
-            # Initialize consumer variable
+            # Initialize consumer 
             consumer = KafkaConsumer(
                 api["name"],
                 bootstrap_servers=['localhost:9092'],
@@ -29,13 +29,13 @@ if __name__ == "__main__":
                 enable_auto_commit=False,
                 value_deserializer=lambda m: json.loads(m.decode('ascii'))
             )
-            # Read message from consumer
+            # Read message 
             position = None
             for msg in consumer:
                 position = msg.value
                 consumer.close()
 
-            if True: #True for debug, set IsVibile(position) when ready
+            if True:
                 producer = kafka_producer()
                 now = datetime.utcnow()
                 current_time = now.strftime("%H:%M:%S")
