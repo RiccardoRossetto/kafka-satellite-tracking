@@ -12,7 +12,7 @@ In order to interface Kafka with Python we used the library *kafka-python* whose
 
 ---
 
-The producer requests from an API the positions of the two satellites every 30 seconds(due to API limit on the hourly requests), parses them in order to keep only the positions and finally publishes them to their respective topic, encoding them into bytes.
+The producer requests from an API the positions of the two satellites every 30 seconds (due to API limit on the hourly requests), parses them in order to keep only the positions and finally publishes them to their respective topic, encoding them into bytes.
 
 The two topics to which the producer publishes the messages are:
 
