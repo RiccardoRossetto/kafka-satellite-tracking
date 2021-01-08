@@ -56,5 +56,25 @@ To implement a notifications system, we created another consumer which reads the
 
 ![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/notif-topic.jpeg)
 
+### Getting Started
+
+---
+
+In order to launch this application, first install all of the required dependencies with:
+
+```bash
+$ pip3 install -r requirements.txt
+```
+
+then, once both the zookeeper and the Kafka server are running, start the following:
+
+* producer.py
+* consumer.py
+* notif_consumer.py
+
+and let them run in background, they will provide some logs about the retrieval and publishing of messages.
+
+To access the web page containing the Leaflet map, connect to http://localhost:5001/.
+
 
 
