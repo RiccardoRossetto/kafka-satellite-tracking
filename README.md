@@ -4,11 +4,11 @@
 
 The application we developed involves Kafka, Python, Flask, and Leaflet to produce a real-time map display of the positions of two satellites, the **ISS** (International Space Station) and the **NOAA-N Prime** (National Oceanic and Atmospheric Administration). 
 
-### Architecture
+## Architecture
 
 In order to interface Kafka with Python we used the library *kafka-python* whose classes allowed us to instantiate producers and consumers; while, in order to show our results, we used Flask in conjunction with Leaflet, so that we could host an HTML page inside which we displayed our Leaflet map.
 
-#### Producer
+### Producer
 
 ---
 
@@ -29,7 +29,7 @@ Here are the topics and the messages they contain:
 
 ![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/noaa-topic.jpeg)
 
-#### Consumer
+### Consumer
 
 ---
 
@@ -46,7 +46,7 @@ As it can be seen, there are three objects in the map:
 * Two markers, one for each satellite. A label appears when hovering over them with the mouse.
 * One red circle, which represents the area inside which a visibility notification is triggered for an hypothetical observer in the center of the circle (of 500 Km radius).
 
-#### Notifications
+### Notifications
 
 ---
 
@@ -56,7 +56,7 @@ To implement a notifications system, we created another consumer which reads the
 
 ![](https://github.com/RiccardoRossetto/kafka-satellite-tracking/blob/main/imgs/notif-topic.jpeg)
 
-### Getting Started
+## Getting Started
 
 ---
 
