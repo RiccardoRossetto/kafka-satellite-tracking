@@ -40,7 +40,8 @@ if __name__ == "__main__":
                 current_time = now.strftime("%H:%M:%S")
                 notification = {"Satellite": api["name"],
                                 "Time": current_time,
-                                "Position": position}
+                                "Position": position,
+                                "Visibility": "Visible" if IsVisible(position) else "Not Visible"}
                 print(notification)
                 publish(producer, "NOTIFICATIONS", "Visibility", json.dumps(notification))
                 producer.close()

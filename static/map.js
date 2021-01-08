@@ -17,10 +17,12 @@ sources[0].addEventListener('message', function(e){
         console.log('Message');
         obj = JSON.parse(e.data);
         console.log(obj);
+
         console.log(ISS_marker.length)
         for (var i = 0; i < ISS_marker.length; i++){
                 mymap.removeLayer(ISS_marker[i]);
         }
+
         marker = L.marker([obj.latitude, obj.longitude])
                          .bindTooltip('ISS', { noHide: true })
                          .addTo(mymap);
@@ -36,6 +38,7 @@ sources[1].addEventListener('message', function(e){
         for (var i = 0; i < NOAA_19_marker.length; i++){
                 mymap.removeLayer(NOAA_19_marker[i]);
         }
+
         marker = L.marker([obj.latitude, obj.longitude])
                          .bindTooltip('NOAA 19', { noHide: true })
                          .addTo(mymap);
