@@ -1,4 +1,6 @@
-var mymap = L.map('mapid').setView([48.864, 2.349], 7);
+PARIS_COORD = [48.864, 2.349];
+
+var mymap = L.map('mapid').setView(PARIS_COORD, 7);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -45,7 +47,7 @@ sources[1].addEventListener('message', function(e){
         NOAA_19_marker.push(marker);
 }, false);
 
-var circle = L.circle([48.864, 2.349], {
+var circle = L.circle(PARIS_COORD, {
 color: 'red',
 fillColor: '#f03',
 fillOpacity: 0.5,

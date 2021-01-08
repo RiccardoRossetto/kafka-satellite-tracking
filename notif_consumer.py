@@ -1,6 +1,7 @@
 from producer import API_LIST, LATITUDE_PARIS, LONGITUDE_PARIS
 from kafka import KafkaConsumer
 from producer import kafka_producer, publish
+from geopy.distance import distance
 import json
 import time
 from datetime import datetime
@@ -8,13 +9,13 @@ import numpy as np
 
 
 def IsVisible(position):
-    dist_x = LATITUDE_PARIS - position["latitude"]
-    dist_y = LONGITUDE_PARIS - position["longitude"]
-    dist = np.sqrt(dist_x ** 2 + dist_y ** 2)
-    if dist < 5.5:
-        return True
+    PARIS_POSITION = (LATITUDE_PARIS, LONGITUDE_PARIS)
+    pos = position['latitude'], position['longitude']
+    d = distance(PARIS_POSITION, pos).m
+    if d < 500000:
+        return True, d
     else:
-        return False
+        return False, d
 
 
 if __name__ == "__main__":
@@ -38,10 +39,12 @@ if __name__ == "__main__":
                 producer = kafka_producer()
                 now = datetime.utcnow()
                 current_time = now.strftime("%H:%M:%S")
+                visible, dist = IsVisible(position)
                 notification = {"Satellite": api["name"],
                                 "Time": current_time,
                                 "Position": position,
-                                "Visibility": "Visible" if IsVisible(position) else "Not Visible"}
+                                "Visibility": "Visible" if visible else "Not Visible",
+                                "Distance": dist}
                 print(notification)
                 publish(producer, "NOTIFICATIONS", "Visibility", json.dumps(notification))
                 producer.close()
